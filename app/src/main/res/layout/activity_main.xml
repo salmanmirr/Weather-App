@@ -11,20 +11,240 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/tempDisplayID"
         android:text="*Temp Display*"
-        android:layout_margin="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
         android:gravity="right"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/cityInfoID"
         android:text="city info"
-        android:layout_margin="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
         android:gravity="left"/>
 
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/linLay1"
+        android:layout_below="@+id/cityInfoID"
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:id="@+id/cardViewOne"
+        android:layout_alignTop="@+id/cityInfoID"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dayOneDetails"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayOneTempDisplay"
+                android:text="info"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="1dp"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/dayOneStatDisplay"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayOneDayDisplay"
+                android:text="info2"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginBottom="1dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:id="@+id/cardViewTwo"
+        android:layout_alignTop="@+id/cityInfoID"
+        android:layout_alignLeft="@+id/cardViewOne"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dayTwoDetails"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayTwoTempDisplay"
+                android:text="info"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="1dp"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/dayTwoStatDisplay"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayTwoDayDisplay"
+                android:text="info2"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginBottom="1dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:id="@+id/cardViewThree"
+        android:layout_alignTop="@+id/cityInfoID"
+        android:layout_alignLeft="@+id/cardViewTwo"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/dayThreeDetails"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayThreeTempDisplay"
+                android:text="info"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="1dp"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/dayThreeStatDisplay"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dayThreeDayDisplay"
+                android:text="info2"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginBottom="1dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:id="@+id/cardViewFour"
+        android:layout_alignTop="@+id/cityInfoID"
+        android:layout_alignLeft="@+id/cardViewThree"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:id="@+id/cardViewFive"
+        android:layout_alignTop="@+id/cityInfoID"
+        android:layout_alignLeft="@+id/cardViewFour"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp"
+        />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:id="@+id/airpolDisplay"
+        android:layout_below="@+id/linLay1"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="8dp"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linLay2"
+        android:layout_below="@+id/airpolDisplay"
+        android:layout_marginTop="35dp"
+        android:gravity="center_horizontal">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cityOne"
+            android:text="CityOne"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cityTwo"
+            android:text="CityTwo"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cityThree"
+            android:text="CityThree"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+
+
+
 
 
 
