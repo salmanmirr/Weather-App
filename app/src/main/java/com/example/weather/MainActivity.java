@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Button cityThree = findViewById(R.id.cityThree);
 
         cityOne.setOnClickListener(v -> fetchWeatherAndAirQuality("Riyadh"));
-        cityTwo.setOnClickListener(v -> fetchWeatherAndAirQuality("New York"));
+        cityTwo.setOnClickListener(v -> fetchWeatherAndAirQuality("Saskatchewan"));
         cityThree.setOnClickListener(v -> fetchWeatherAndAirQuality("Dhaka"));
     }
 
@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject currentWeather = list.getJSONObject(0);
                         JSONObject main = currentWeather.getJSONObject("main");
-                        tempDisplay.setText(String.format("%s°C", main.getString( "temp")));
+                        int currentTemp = (int) Math.round(main.getDouble("temp"));
+                        tempDisplay.setText(String.format("%d°C", currentTemp));
 
 
                         String dateTime = currentWeather.getString("dt_txt");
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray weatherArray = dayWeather.getJSONArray("weather");
                             JSONObject weather = weatherArray.getJSONObject(0);
 
-                            String dayTemp = String.format("%s°C", dayMain.getString("temp"));
+                            int dayTempInt = (int) Math.round(dayMain.getDouble("temp"));
                             String dayDesc = weather.getString("main");
                             String dayDateTime = dayWeather.getString("dt_txt");
                             String formattedDay = formatDate(dayDateTime);
@@ -127,27 +128,27 @@ public class MainActivity extends AppCompatActivity {
 
                             switch (i) {
                                 case 0:
-                                    dayOneTemp.setText(dayTemp);
+                                    dayOneTemp.setText(String.format("%d°C", dayTempInt));
                                     dayOneDay.setText(formattedDay);
                                     dayOneStat.setImageResource(getIcon(dayDesc));
                                     break;
                                 case 1:
-                                    dayTwoTemp.setText(dayTemp);
+                                    dayTwoTemp.setText(String.format("%d°C", dayTempInt));
                                     dayTwoDay.setText(formattedDay);
                                     dayTwoStat.setImageResource(getIcon(dayDesc));
                                     break;
                                 case 2:
-                                    dayThreeTemp.setText(dayTemp);
+                                    dayThreeTemp.setText(String.format("%d°C", dayTempInt));
                                     dayThreeDay.setText(formattedDay);
                                     dayThreeStat.setImageResource(getIcon(dayDesc));
                                     break;
                                 case 3:
-                                    dayFourTemp.setText(dayTemp);
+                                    dayFourTemp.setText(String.format("%d°C", dayTempInt));
                                     dayFourDay.setText(formattedDay);
                                     dayFourStat.setImageResource(getIcon(dayDesc));
                                     break;
                                 case 4:
-                                    dayFiveTemp.setText(dayTemp);
+                                    dayFiveTemp.setText(String.format("%d°C", dayTempInt));
                                     dayFiveDay.setText(formattedDay);
                                     dayFiveStat.setImageResource(getIcon(dayDesc));
                                     break;

@@ -381,7 +381,7 @@
             android:layout_width="110dp"
             android:layout_height="80dp"
             android:id="@+id/cityTwo"
-            android:text="New York, US"
+            android:text="Saskatchewan, CA"
             android:layout_margin="5dp"
             android:elevation="8dp"
             android:gravity="center"
