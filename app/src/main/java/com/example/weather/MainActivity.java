@@ -22,15 +22,14 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tempDisplay, cityInfo, errorText, dayStatusID;
+    private TextView tempDisplay, cityInfo, errorText;
     private TextView dayOneTemp, dayTwoTemp, dayThreeTemp, dayFourTemp, dayFiveTemp;
     private TextView dayOneDay, dayTwoDay, dayThreeDay, dayFourDay, dayFiveDay;
     private ImageView dayOneStat, dayTwoStat, dayThreeStat, dayFourStat, dayFiveStat;
     private ProgressBar loader;
     private RequestQueue requestQueue;
-
-    private ImageView airQualityImage;
     private TextView airQualityDetails;
+    private ImageView airQualityImage;
 
     private final String API_KEY = "1fc995c0d7111798a72d0acd159e5d19";
     private final String BASE_URL = "https://api.openweathermap.org/data/2.5/";
@@ -40,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        airQualityImage = findViewById(R.id.airpolDisplay);
 
         airQualityDetails = findViewById(R.id.airQualityDetails);
+        airQualityImage = findViewById(R.id.qualityStatDisplay);
 
         tempDisplay = findViewById(R.id.tempDisplayID);
         cityInfo = findViewById(R.id.cityInfoID);
@@ -83,57 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchWeatherAndAirQuality(String cityName) {
         fetchWeatherData(cityName);
         fetchAirQuality(cityName);
-
     }
-
-    private void fetchAirQuality(String cityName) {
-        // Geocoding API to get lat/lon of the city
-        String geoUrl = BASE_URL + "weather?q=" + cityName + "&appid=" + API_KEY;
-
-        JsonObjectRequest geoRequest = new JsonObjectRequest(Request.Method.GET, geoUrl, null,
-                response -> {
-                    try {
-                        JSONObject coord = response.getJSONObject("coord");
-                        double lat = coord.getDouble("lat");
-                        double lon = coord.getDouble("lon");
-
-                        // Fetch air pollution using coordinates
-                        fetchAirPollutionData(lat, lon);
-                    } catch (Exception e) {
-                        airQualityDetails.setText("Error fetching air quality: Location parsing failed.");
-                    }
-                },
-                error -> airQualityDetails.setText("Error fetching air quality: Unable to fetch location.")
-        );
-
-        requestQueue.add(geoRequest);
-    }
-
-
-    private void fetchAirPollutionData(double lat, double lon) {
-        String pollutionUrl = BASE_URL + "air_pollution?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY;
-
-        JsonObjectRequest pollutionRequest = new JsonObjectRequest(Request.Method.GET, pollutionUrl, null,
-                response -> {
-                    try {
-                        JSONObject main = response.getJSONArray("list").getJSONObject(0).getJSONObject("main");
-                        int aqi = main.getInt("aqi");
-
-                        // Convert AQI to descriptive text
-                        String airQuality = getAirQualityDescription(aqi);
-                        airQualityDetails.setText("Air Quality: " + airQuality);
-
-                        airQualityImage.setImageResource(getAirQualityImage(aqi));
-                    } catch (Exception e) {
-                        airQualityDetails.setText("Error parsing air quality data.");
-                    }
-                },
-                error -> airQualityDetails.setText("Error fetching air quality data.")
-        );
-
-        requestQueue.add(pollutionRequest);
-    }
-
 
     private void fetchWeatherData(String cityName) {
         loader.setVisibility(View.VISIBLE);
@@ -144,26 +93,26 @@ public class MainActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        // Parse city information
+
                         JSONObject city = response.getJSONObject("city");
                         cityInfo.setText(city.getString("name") + ", " + city.getString("country"));
 
                         JSONArray list = response.getJSONArray("list");
 
-                        // Current weather
+
                         JSONObject currentWeather = list.getJSONObject(0);
                         JSONObject main = currentWeather.getJSONObject("main");
                         tempDisplay.setText(String.format("%s°C", main.getString("temp")));
 
-                        // Display day and date for current weather
+
                         String dateTime = currentWeather.getString("dt_txt");
                         String formattedDayDate = formatDate(dateTime);
                         TextView dayStatus = findViewById(R.id.dayStatusID);
                         dayStatus.setText(formattedDayDate);
 
-                        // Forecast data for the next 5 days
+
                         for (int i = 0; i < 5; i++) {
-                            int index = i * 8; // 8 intervals per day (3-hour gaps)
+                            int index = i * 8;
 
                             JSONObject dayWeather = list.getJSONObject(index);
                             JSONObject dayMain = dayWeather.getJSONObject("main");
@@ -173,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
                             String dayTemp = String.format("%s°C", dayMain.getString("temp"));
                             String dayDesc = weather.getString("main");
                             String dayDateTime = dayWeather.getString("dt_txt");
-                            String formattedDay = formatDay(dayDateTime); // Format to display day name (e.g., "Tuesday")
+                            String formattedDay = formatDate(dayDateTime);
 
-                            // Update UI based on index
+
                             switch (i) {
                                 case 0:
                                     dayOneTemp.setText(dayTemp);
@@ -222,9 +171,94 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void fetchAirQuality(String cityName) {
+        String geoUrl = BASE_URL + "weather?q=" + cityName + "&appid=" + API_KEY;
+
+        JsonObjectRequest geoRequest = new JsonObjectRequest(Request.Method.GET, geoUrl, null,
+                response -> {
+                    try {
+                        JSONObject coord = response.getJSONObject("coord");
+                        double lat = coord.getDouble("lat");
+                        double lon = coord.getDouble("lon");
+
+                        fetchAirPollutionData(lat, lon);
+                    } catch (Exception e) {
+                        airQualityDetails.setText("Error fetching air quality: Location parsing failed.");
+                    }
+                },
+                error -> airQualityDetails.setText("Error fetching air quality: Unable to fetch location.")
+        );
+
+        requestQueue.add(geoRequest);
+    }
+
+    private void fetchAirPollutionData(double lat, double lon) {
+        String pollutionUrl = BASE_URL + "air_pollution?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY;
+
+        JsonObjectRequest pollutionRequest = new JsonObjectRequest(Request.Method.GET, pollutionUrl, null,
+                response -> {
+                    try {
+                        JSONObject main = response.getJSONArray("list").getJSONObject(0).getJSONObject("main");
+                        int aqi = main.getInt("aqi");
+
+                        String airQuality = getAirQualityDescription(aqi);
+                        airQualityDetails.setText("Air Quality: " + airQuality);
+                        airQualityImage.setImageResource(getAirQualityImage(aqi));
+                    } catch (Exception e) {
+                        airQualityDetails.setText("Error parsing air quality data.");
+                        airQualityImage.setImageResource(R.drawable.unknownn);
+                    }
+                },
+                error -> {
+                    airQualityDetails.setText("Error fetching air quality data.");
+                    airQualityImage.setImageResource(R.drawable.unknownn);
+                });
+
+        requestQueue.add(pollutionRequest);
+    }
+
+    private int getAirQualityImage(int aqi) {
+        switch (aqi) {
+            case 1: return R.drawable.good;
+            case 2: return R.drawable.fair;
+            case 3: return R.drawable.moderate;
+            case 4: return R.drawable.poor;
+            case 5: return R.drawable.very_poor;
+            default: return R.drawable.unknownn;
+        }
+    }
+
+
+    private String getAirQualityDescription(int aqi) {
+        switch (aqi) {
+            case 1: return "Good";
+            case 2: return "Fair";
+            case 3: return "Moderate";
+            case 4: return "Poor";
+            case 5: return "Very Poor";
+            default: return "Unknown";
+        }
+    }
+
+
+
+    private String formatDate(String dateTime) {
+        try {
+
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            Date date = inputFormat.parse(dateTime);
+
+            SimpleDateFormat outputFormat = new SimpleDateFormat("EEE", Locale.getDefault());
+            return outputFormat.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Unknown";
+        }
+    }
+
 
     private int getIcon(String weather) {
-        // Map weather conditions to drawable resources
+
         switch (weather.toLowerCase()) {
             case "clear":
                 return R.drawable.clear_sky;
@@ -239,63 +273,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return R.drawable.unknown;
         }
-    }
-    private String formatDate(String dateTime) {
-        try {
-            // Input date format from API
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            Date date = inputFormat.parse(dateTime);
-
-            // Desired output format
-            SimpleDateFormat outputFormat = new SimpleDateFormat("EEEE, MMMM d", Locale.getDefault());
-            return outputFormat.format(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Unknown Date";
-        }
-    }
-
-    private String formatDay(String dateTime) {
-        try {
-            // Input date format from API
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            Date date = inputFormat.parse(dateTime);
-
-            // Output format: Day of the week
-            SimpleDateFormat outputFormat = new SimpleDateFormat("EEE", Locale.getDefault());
-            return outputFormat.format(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Unknown";
-        }
-    }
-
-    private String getAirQualityDescription(int aqi) {
-        switch (aqi) {
-            case 1: return "Good (1)";
-            case 2: return "Fair (2)";
-            case 3: return "Moderate (3)";
-            case 4: return "Poor (4)";
-            case 5: return "Very Poor (5)";
-            default: return "Unknown";
-        }
-    }
-
-    private int getAirQualityImage(int aqi) {
-        switch (aqi) {
-            case 1:
-                return R.drawable.good;
-            case 2:
-                return R.drawable.fair;
-            case 3:
-                return R.drawable.moderate;
-            case 4:
-                return R.drawable.poor;
-            case 5:
-                return R.drawable.very_poor;
-            default:
-                return R.drawable.unknown;
-        }
-
     }
 }
