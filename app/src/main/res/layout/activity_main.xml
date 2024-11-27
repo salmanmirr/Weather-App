@@ -6,35 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:paddingTop="30dp"
+    android:paddingBottom="30dp"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tempDisplayID"
-        android:text="*Temp Display*"
-        android:layout_marginTop="40dp"
+        android:text="0"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="40dp"
-        android:gravity="right"/>
+        android:gravity="right"
+        android:textSize="60dp"
+        android:textColor="@color/offwhite"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dayStatusID"
         android:text="dayStat"
-        android:layout_alignTop="@+id/tempDisplayID"
-        android:layout_marginTop="40dp"
         android:layout_marginRight="40dp"
-        android:gravity="right"/>
+        android:layout_below="@id/tempDisplayID"
+        android:gravity="right"
+        android:textSize="20dp"
+        android:textColor="@color/offwhite"/>
+
 
     <TextView
+        android:id="@+id/cityInfoID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cityInfoID"
-        android:text="city info"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
-        android:gravity="left"/>
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text="city info"
+        android:textSize="25dp"
+        android:textColor="@color/offwhite"/>
 
 
     <LinearLayout
@@ -42,14 +52,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/linLay1"
         android:layout_below="@+id/cityInfoID"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="140dp"
         android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:padding="10dp">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:id="@+id/cardViewOne"
         android:layout_alignTop="@+id/cityInfoID"
         android:layout_margin="5dp"
@@ -61,7 +72,8 @@
             android:layout_height="match_parent"
             android:id="@+id/dayOneDetails"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/bluesome">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -70,7 +82,8 @@
                 android:text="info"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp"
+                android:textColor="@color/idkwhite"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -85,7 +98,8 @@
                 android:text="info2"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="1dp"/>
+                android:layout_marginBottom="1dp"
+                android:textColor="@color/idkwhite"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -93,7 +107,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:id="@+id/cardViewTwo"
         android:layout_alignTop="@+id/cityInfoID"
         android:layout_alignLeft="@+id/cardViewOne"
@@ -106,7 +120,8 @@
             android:layout_height="match_parent"
             android:id="@+id/dayTwoDetails"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/bluesome">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,7 +130,8 @@
                 android:text="info"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp"
+                android:textColor="@color/idkwhite"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -130,7 +146,8 @@
                 android:text="info2"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="1dp"/>
+                android:layout_marginBottom="1dp"
+                android:textColor="@color/idkwhite"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -139,7 +156,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:id="@+id/cardViewThree"
         android:layout_alignTop="@+id/cityInfoID"
         android:layout_alignLeft="@+id/cardViewTwo"
@@ -152,7 +169,8 @@
             android:layout_height="match_parent"
             android:id="@+id/dayThreeDetails"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/bluesome">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,7 +179,8 @@
                 android:text="info"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp"
+                android:textColor="@color/idkwhite"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -176,7 +195,8 @@
                 android:text="info2"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="1dp"/>
+                android:layout_marginBottom="1dp"
+                android:textColor="@color/idkwhite"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -184,7 +204,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:id="@+id/cardViewFour"
         android:layout_alignTop="@+id/cityInfoID"
         android:layout_alignLeft="@+id/cardViewThree"
@@ -197,7 +217,8 @@
             android:layout_height="match_parent"
             android:id="@+id/dayFourDetails"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/bluesome">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -206,7 +227,8 @@
                 android:text="info"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp"
+                android:textColor="@color/idkwhite"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -221,7 +243,8 @@
                 android:text="info2"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="1dp"/>
+                android:layout_marginBottom="1dp"
+                android:textColor="@color/idkwhite"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -229,7 +252,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:id="@+id/cardViewFive"
         android:layout_alignTop="@+id/cityInfoID"
         android:layout_alignLeft="@+id/cardViewFour"
@@ -242,7 +265,8 @@
             android:layout_height="match_parent"
             android:id="@+id/dayFiveDetails"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@color/bluesome">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -251,7 +275,8 @@
                 android:text="info"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp"
+                android:textColor="@color/idkwhite"/>
 
             <ImageView
                 android:layout_width="40dp"
@@ -266,7 +291,8 @@
                 android:text="info2"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="1dp"/>
+                android:layout_marginBottom="1dp"
+                android:textColor="@color/idkwhite"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -284,41 +310,52 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="8dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/airQualLayout"
-            android:orientation="vertical">
+            android:background="@color/bluesome">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/qualityTextDisplay"
-                android:text="AIR QUALITY INDEX"
-                android:textSize="14sp"
-                android:gravity="left"
-                android:layout_margin="10dp"/>
-
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:id="@+id/qualityStatDisplay"
-                android:layout_gravity="right"
-                />
-
-            <TextView
-                android:id="@+id/airQualityDetails"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AIR QUALITY INDEX"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/idkwhite"/>
 
-                android:layout_margin="10dp"
-                android:gravity="left"
-                android:text="info2"
-                android:textSize="14sp" />
+            <LinearLayout
+                android:id="@+id/airQualityContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/qualityTextDisplay"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
 
+                <ImageView
+                    android:id="@+id/qualityStatDisplay"
+                    android:layout_width="67dp"
+                    android:layout_height="67dp"
+                    android:contentDescription="Air Quality Icon"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_launcher_foreground" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/airQualityDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Info2"
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/idkwhite"/>
+
+            </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -326,30 +363,41 @@
         android:orientation="horizontal"
         android:id="@+id/linLay2"
         android:layout_below="@+id/airpolDisplay"
-        android:layout_marginTop="35dp"
-        android:gravity="center_horizontal">
-
+        android:layout_marginTop="30dp"
+        android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
             android:id="@+id/cityOne"
-            android:text="CityOne"
-            android:layout_margin="5dp"/>
+            android:text="Riyadh, KSA"
+            android:layout_margin="5dp"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:backgroundTint="@color/bluesome"
+            android:textColor="@color/idkwhite"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
             android:id="@+id/cityTwo"
-            android:text="CityTwo"
-            android:layout_margin="5dp"/>
+            android:text="New York, US"
+            android:layout_margin="5dp"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:backgroundTint="@color/bluesome"
+            android:textColor="@color/idkwhite"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/cityThree"
-            android:text="CityThree"
-            android:layout_margin="5dp"/>
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/bluesome"
+            android:elevation="8dp"
+            android:gravity="center"
+            android:text="Dhaka, BD"
+            android:textColor="@color/idkwhite"/>
 
     </LinearLayout>
 

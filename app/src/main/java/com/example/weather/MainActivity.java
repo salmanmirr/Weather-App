@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                         JSONObject currentWeather = list.getJSONObject(0);
                         JSONObject main = currentWeather.getJSONObject("main");
-                        tempDisplay.setText(String.format("%s°C", main.getString("temp")));
+                        tempDisplay.setText(String.format("%s°C", main.getString( "temp")));
 
 
                         String dateTime = currentWeather.getString("dt_txt");
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (weather.toLowerCase()) {
             case "clear":
-                return R.drawable.clear_sky;
+                return R.drawable.sunny;
             case "clouds":
                 return R.drawable.cloudyy;
             case "rain":
